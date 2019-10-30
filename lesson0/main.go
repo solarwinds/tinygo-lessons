@@ -1,5 +1,10 @@
 package main
 
+import(
+	"machine"
+	"time"
+)
+
 //
 // Blinking an onboard LED is the "hello, world!" of programming small devices...
 //
