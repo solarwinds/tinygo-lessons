@@ -22,7 +22,7 @@ func main() {
 
 func reportTicksForever() {
 	for {
-		time.Sleep(time.Millisecond * 500)
+		time.Sleep(time.Millisecond * 2000)
 		println("Tick count: ", ticks)
 	}
 }
@@ -35,7 +35,7 @@ func blinkOnboardForever() {
 		ticks++
 
 		led.Low()
-		time.Sleep(time.Millisecond * 500)
+		time.Sleep(time.Millisecond * 1500)
 
 		led.High()
 		time.Sleep(time.Millisecond * 500)
