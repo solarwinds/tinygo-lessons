@@ -18,13 +18,14 @@ Using TinyGo to program the Arduino Nano 33 IoT
 	* Flashing basics
 
 #### lesson1
-Connecting an external LED to a pin
-	* Breadboards and their rails
-
-#### lesson2
-UART for debugging messages
+Goroutines and UART
+	* goroutines let you do more than one thing at once
 	* TinyGo uses UART for built-in debugging b/c of its ubquity
 	* screen to connect to serial interface
+
+#### lesson2
+Connecting an external LED to a pin
+	* Breadboards and their rails
 
 #### lesson3
 Rotation sensor and more LED
@@ -33,8 +34,6 @@ Rotation sensor and more LED
 
 #### lesson4
 Buzzer to create rotation threshold
-	
-
 
 #### lesson5
 Sending data to an MQTT broker
