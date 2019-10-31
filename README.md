@@ -21,7 +21,7 @@ Using TinyGo to program the Arduino Nano 33 IoT
 Goroutines and UART
 	* goroutines let you do more than one thing at once
 	* TinyGo uses UART for built-in debugging b/c of its ubquity
-	* screen to connect to serial interface
+	* `screen` to connect to serial interface
 
 #### lesson2
 Connecting an external LED to a pin
@@ -34,6 +34,7 @@ Rotation sensor and more LED
 
 #### lesson4
 Buzzer to create rotation threshold
+	* Transforming analog values
 
 #### lesson5
 Sending data to an MQTT broker
