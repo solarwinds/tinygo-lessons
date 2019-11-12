@@ -27,7 +27,6 @@ func reportTicksForever() {
 	}
 }
 
-
 // blinkOnboardForever configures and blinks the Nano33's onboard LED
 func blinkOnboardForever() {
 	led := machine.LED

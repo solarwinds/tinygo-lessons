@@ -5,10 +5,6 @@ import(
 	"time"
 )
 
-var(
-	ticks int
-)
-
 //
 // Take input from a machine pin
 //
