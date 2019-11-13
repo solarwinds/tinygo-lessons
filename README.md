@@ -59,42 +59,41 @@ make
 [Download the installer](https://github.com/shumatech/BOSSA/releases/download/1.9.1/bossa-1.9.1.dmg)
 
 
-
 ## Lesson Structure
 
 (TODO: add macOS device callout here)
 
 #### lesson0
 "hello, world!" - blinking the onboard LED on an interval
-	* Flashing basics
+
+* Flashing basics
+* Using the machine abstraction
 
 #### lesson1
 Goroutines and UART
-	* goroutines let you do more than one thing at once
-	* TinyGo uses UART for built-in debugging b/c of its ubquity
-	* `screen` to connect to serial interface
+* goroutines let you do more than one thing at once
+* TinyGo uses UART for built-in debugging b/c of its ubquity
+* `screen` to connect to serial interface
 
 #### lesson2
 Connecting an external LED to a pin
-	* Breadboards and their rails
+* Breadboards and their rails
+* Using jumper wires and pins
 
 #### lesson3
-Rotation sensor and more LED
-	* Light up red or green based on rotation region
-	* Send rotation info to UART for debugging
+Analog rotation sensor to control an LED
+* Use rotation sensor as a dimmer switch
+* Send rotation info to UART for debugging
 
 #### lesson4
 Buzzer to create rotation threshold
-	* Transforming analog values
+* Transforming analog values
 
 #### lesson5
 Sending data to an MQTT broker
-	* Connect to wifi
-	* Send MQTT message at rotation threshold
+* Connect to wifi
+* Send MQTT message at rotation threshold
 
-
-### LLVM
-TinyGo uses LLVM's backend to target various architectures. You need to have at least LLVM 8 to get the [AVR backend](https://github.com/avr-llvm) support, which is necessary because [Arduino]() is [based on that architecture](https://en.wikipedia.org/wiki/AVR_microcontrollers).
 
 ### Docker-based MQTT Server
 `docker run -it -p 1883:1883 -p 9001:9001 eclipse-mosquitto`
