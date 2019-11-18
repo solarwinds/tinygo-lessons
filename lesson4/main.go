@@ -3,12 +3,12 @@ package main
 import(
 	"machine"
 	"time"
+	"tinygo.org/x/drivers/buzzer"
 )
 
 //
-// Take input from an analog sensor
+// Produce a buzz past a threshold
 //
-
 func main() {
 	machine.InitADC() // init the machine's ADC subsystem
 	machine.InitPWM() // init the machine's PWM subsystem
@@ -20,10 +20,23 @@ func main() {
 	led := machine.PWM{machine.D12}
 	led.Configure()
 
+	buzrPin := machine.D11
+	buzrPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
+
+	buzz := buzzer.New(buzrPin)
+
 	for {
 		sensorValue := rotarySensor.Get()
+
+		if sensorValue > 32000 {
+			buzz.On()
+		}else{
+			buzz.Off()
+		}
+
 		println("Value: ", sensorValue)
 		led.Set(sensorValue)
 		time.Sleep(time.Millisecond * 10)
 	}
 }
+

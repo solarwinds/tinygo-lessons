@@ -70,7 +70,7 @@ make
 * Using the machine abstraction
 
 #### lesson1
-Goroutines and UART
+Goroutines and UART print
 * goroutines let you do more than one thing at once
 * TinyGo uses UART for built-in debugging b/c of its ubquity
 * `screen` to connect to serial interface
