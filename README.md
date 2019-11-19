@@ -37,8 +37,6 @@ https://tinygo.org/getting-started/windows/
 ```
 go get -u tinygo.org/x/drivers
 go get -u github.com/eclipse/paho.mqtt.golang
-go get -u github.com/conejoninja/tinydraw
-go get -u github.com/conejoninja/tinyfont
 ```
 
 ### Clang 8
@@ -61,7 +59,27 @@ make
 
 ## Lesson Structure
 
-(TODO: add macOS device callout here)
+### IMPORTANT! macOS-specific required steps (Linux users can ignore)
+The Linux and macOS device subsystems have subtle differences. **In order to talk to the Arduino board on a Mac**, you need to discover how macOS
+system has named it. Plug it in and follow these commands:
+
+```
+ls /dev | grep usb
+```
+
+Should produce entries like (you may have different numbers after
+`usbmodem`):
+
+```
+/dev/cu.usbmodem141201
+/dev/tty.usbmodem141201
+```
+
+Set the fully qualified path for the `tty` entry into an environment variable. We'll use this below in the macOS version of the steps.
+
+```sh
+export NANO33_DEV_PATH=/dev/{YOUR TTY USBMODEM ID}
+```
 
 #### lesson0
 "hello, world!" - blinking the onboard LED on an interval
@@ -88,6 +106,7 @@ Analog rotation sensor to control an LED
 #### lesson4
 Buzzer to create rotation threshold
 * Transforming analog values
+* Understanding ADC range
 
 #### lesson5
 Sending data to an MQTT broker
@@ -98,5 +117,11 @@ Sending data to an MQTT broker
 ### Docker-based MQTT Server
 `docker run -it -p 1883:1883 -p 9001:9001 eclipse-mosquitto`
 
+## Terminology
+
+
+
 ## Credits
 Thanks to TinyGo creator Ayke van Laethem (@aykevl) and Ron Evans (@deadprogram) of the [HybridGroup](https://hybridgroup.com) for their work on TinyGo, related [workshop content](https://github.com/hybridgroup/hacklab-2019), and valuable input into these lessons.
+
+
