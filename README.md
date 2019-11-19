@@ -5,6 +5,10 @@ Using TinyGo to program the Arduino Nano 33 IoT
 * Lesson Structure [#lesson-structure]
 
 ## Setup
+
+### This Repo
+Clone this repo into your $GOPATH (if you didn't set one up, this will be `~/go`).
+
 ### Go
 TinyGo uses Go to build. And Go's a great thing to have around anyway.
 #### Linux
