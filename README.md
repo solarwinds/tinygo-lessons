@@ -6,8 +6,6 @@ Using TinyGo to program the Arduino Nano 33 IoT
 
 ## Setup
 
-### This Repo
-Clone this repo into your $GOPATH (if you didn't set one up, this will be `~/go`).
 
 ### Go
 TinyGo uses Go to build. And Go's a great thing to have around anyway.
@@ -22,6 +20,9 @@ sudo apt-get install golang-1.13-go
 brew update
 brew install go
 ```
+
+### This Repo
+`go get github.com/tinygo-org/tinygo`
 
 #### Windows (Experimental)
 Install from MSI or source https://golang.org/dl/
