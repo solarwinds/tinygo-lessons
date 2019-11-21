@@ -6,7 +6,6 @@ Using TinyGo to program the Arduino Nano 33 IoT
 
 ## Setup
 
-
 ### Go
 TinyGo uses Go to build. And Go's a great thing to have around anyway.
 #### Linux
@@ -44,9 +43,6 @@ go get -u tinygo.org/x/drivers
 go get -u github.com/eclipse/paho.mqtt.golang
 ```
 
-### Clang 8
-http://releases.llvm.org/download.html#9.0.0
-
 ### bossac CLI tool
 #### Linux
 ```
@@ -63,6 +59,9 @@ make
 
 
 ## Lesson Structure
+
+![Arduino Nano33 IoT](https://github.com/hybridgroup/hacklab-2019/blob/master/sensor/arduino/images/nano33pinmap.jpg)
+
 
 ### IMPORTANT! macOS-specific required steps (Linux users can ignore)
 The Linux and macOS device subsystems have subtle differences. **In order to talk to the Arduino board on a Mac**, you need to discover how macOS

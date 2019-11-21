@@ -1,91 +1,105 @@
 package main
 
-import(
+import (
 	"machine"
+	"math/rand"
 	"time"
 
 	"tinygo.org/x/drivers/espat"
 	"tinygo.org/x/drivers/espat/mqtt"
+	"tinygo.org/x/drivers/ssd1306"
 )
-
-//
-// Send data to MQTT
-//
 
 var (
+	buttonPush bool
+
 	uart = machine.UART1
-	tx = machine.PA22  // ARV TX pin
-	rx = machine.PA23  // ARV RX pin
+	tx   = machine.PA22
+	rx   = machine.PA23
 
-	wifiAdapter *espat.Device
+	adaptor *espat.Device
+	topic   = "tinygo"
+
+	display ssd1306.Device
 )
 
-const(
-	wifiSSID   = "arduino"
-	wifiPass   = "tinygo123"
-)
+// access point info. Change this to match your WiFi connection information.
+const ssid = "arduino"
+const pass = "ts2019"
+
+// IP address of the MQTT broker to use. Replace with your own info, if so desired.
+const server = "tcp://192.168.1.8:1883"
 
 func main() {
 	uart.Configure(machine.UARTConfig{TX: tx, RX: rx})
+	machine.InitADC()
+	machine.InitPWM()
 
-	led := machine.LED
-	led.Configure(machine.PinConfig{Mode: machine.PinOutput})
-
-	button := machine.D12
+	button := machine.D11
 	button.Configure(machine.PinConfig{Mode: machine.PinInput})
 
-  if connected := connectedToWiFi(); !connected{
-    println("Can't connect to Wifi")
-    return
-  }
+	blue := machine.LED
+	blue.Configure(machine.PinConfig{Mode: machine.PinOutput})
 
-  connectToAP()
+	// Init esp8266/esp32
+	adaptor = espat.New(uart)
+	adaptor.Configure()
 
-	wifiAdapter = espat.New(uart)
-	wifiAdapter.Configure()
+	// first check if connected
+	if connectToESP() {
+		blue.High()
+		println("Connected to wifi adaptor.")
+		adaptor.Echo(false)
 
-  client := mqttClient(wifiAdapter, "192.168.1.8:1883", "tiny-go")
+		blue.Low()
+		connectToAP()
+		blue.High()
+	} else {
+		println("")
+		failMessage("Unable to connect to wifi adaptor.")
+		return
+	}
 
-  if token := client.Connect(); token.Wait() && token.Error() != nil {
-    println("Error: ", token.Error().Error())
-  }
+	opts := mqtt.NewClientOptions(adaptor)
+	opts.AddBroker(server).SetClientID("tinygo-client-" + "unit1")
+
+	blue.Low()
+	println("Connectng to MQTT...")
+	cl := mqtt.NewClient(opts)
+	if token := cl.Connect(); token.Wait() && token.Error() != nil {
+		failMessage(token.Error().Error())
+	}
 
 	for {
-		if button.Get(){
-      println("Publishing MQTT message")
-      token := publishMqttMessage(client, "tinygo-lessons", "hello, world")
-
-      token.Wait()
-
-      if token.Error() != nil{
-        println(token.Error().Error())
-      }
-
-			led.High()
-		}else{
-			led.Low()
+		buttonPush = button.Get()
+		if !buttonPush {
+			blue.Low()
+		} else {
+			blue.High()
+			println("Publishing MQTT message...")
+			data := []byte("{\"e\":[{ \"n\":\"hello\", \"sv\":\"from unit1\" }]}")
+			token := cl.Publish(topic, 0, false, data)
+			token.Wait()
+			if token.Error() != nil {
+				println(token.Error().Error())
+			}
 		}
-		time.Sleep(time.Millisecond * 10)
+
+		time.Sleep(time.Millisecond * 100)
 	}
+
+	// Right now this code is only reached when there is an error. Need a way to trigger clean exit.
+	println("Disconnecting MQTT...")
+	cl.Disconnect(100)
+
+	println("Done.")
 }
 
-func publishMqttMessage(c mqtt.Client, topic, msg string) mqtt.Token {
-  data := "{\"msg:\"\"" + msg + "\"}"
-  return c.Publish(topic, 0, false, []byte(data))
-}
-
-// mqttClient returns a client for talking to an MQTT broker
-func mqttClient(e *espat.Device, server, clientID string) mqtt.Client{
-  opts := mqtt.NewClientOptions(e)
-  opts.AddBroker(server).SetClientID(clientID)
-  return mqtt.NewClient(opts)
-}
-
-
-func connectedToWiFi() bool {
-	for	i := 0; i < 10; i++ {
-		println("Connecting to ESP wifi adapter")
-		if wifiAdapter.Connected() {
+// connect to ESP8266/ESP32
+func connectToESP() bool {
+	for i := 0; i < 5; i++ {
+		println("Connecting to wifi adaptor...")
+		if adaptor.Connected() {
 			return true
 		}
 		time.Sleep(1 * time.Second)
@@ -97,11 +111,15 @@ func connectedToWiFi() bool {
 func connectToAP() {
 	println("Connecting to wifi network...")
 
-	wifiAdapter.SetWifiMode(espat.WifiModeClient)
-	wifiAdapter.ConnectToAP(wifiSSID, wifiPass, 10)
+	adaptor.SetWifiMode(espat.WifiModeClient)
+	adaptor.ConnectToAP(ssid, pass, 10)
 
 	println("Connected.")
-	println(wifiAdapter.GetClientIP())
+	println(adaptor.GetClientIP())
 }
 
+// Returns an int >= min, < max
+func randomInt(min, max int) int {
+	return min + rand.Intn(max-min)
+}
 
