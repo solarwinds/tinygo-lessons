@@ -121,8 +121,11 @@ Sending data to an MQTT broker
 ### Docker-based MQTT Server
 `docker run -it -p 1883:1883 -p 9001:9001 eclipse-mosquitto`
 
-## Terminology
 
+## Links
+
+* [UART](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter)
+* [screen](https://www.gnu.org/software/screen/)
 
 
 ## Credits
