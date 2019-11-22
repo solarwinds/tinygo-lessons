@@ -91,32 +91,70 @@ export NANO33_DEV_PATH=/dev/{YOUR TTY USBMODEM ID}
 * Flashing basics
 * Using the machine abstraction
 
+**Running it - Linux**
+```tinygo flash -target arduino-nano33 ./lesson0/main.go```
+
+**Running it - macOS**
+```tinygo flash -target arduino-nano33 -port=$NANO33_DEV_PATH ./lesson0/main.go```
+
 #### lesson1
 Goroutines and UART print
 * goroutines let you do more than one thing at once
 * TinyGo uses UART for built-in debugging b/c of its ubquity
 * `screen` to connect to serial interface
 
+**Running it - Linux**
+```tinygo flash -target arduino-nano33 ./lesson1/main.go```
+
+**Running it - macOS**
+```tinygo flash -target arduino-nano33 -port=$NANO33_DEV_PATH ./lesson1/main.go```
+
 #### lesson2
 Connecting an external LED to a pin
 * Breadboards and their rails
 * Using jumper wires and pins
+
+**Running it - Linux**
+```tinygo flash -target arduino-nano33 ./lesson2/main.go```
+
+**Running it - macOS**
+```tinygo flash -target arduino-nano33 -port=$NANO33_DEV_PATH ./lesson2/main.go```
 
 #### lesson3
 Analog rotation sensor to control an LED
 * Use rotation sensor as a dimmer switch
 * Send rotation info to UART for debugging
 
+**Running it - Linux**
+```tinygo flash -target arduino-nano33 ./lesson3/main.go```
+
+**Running it - macOS**
+```tinygo flash -target arduino-nano33 -port=$NANO33_DEV_PATH ./lesson3/main.go```
+
 #### lesson4
 Buzzer to create rotation threshold
 * Transforming analog values
 * Understanding ADC range
+
+**Running it - Linux**
+```tinygo flash -target arduino-nano33 ./lesson4/main.go```
+
+**Running it - macOS**
+```tinygo flash -target arduino-nano33 -port=$NANO33_DEV_PATH ./lesson4/main.go```
 
 #### lesson5
 Sending data to an MQTT broker
 * Connect to wifi
 * Send MQTT message at rotation threshold
 
+**Running it - Linux**
+```tinygo flash -target arduino-nano33 ./lesson5/main.go```
+
+**Running it - macOS**
+```tinygo flash -target arduino-nano33 -port=$NANO33_DEV_PATH ./lesson5/main.go```
+
+
+## Auxiliary
 
 ### Docker-based MQTT Server
 `docker run -it -p 1883:1883 -p 9001:9001 eclipse-mosquitto`
