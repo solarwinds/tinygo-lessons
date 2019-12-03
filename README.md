@@ -1,8 +1,6 @@
 # tinygo-lessons
-Using TinyGo to program the Arduino Nano 33 IoT
-
-* Setup [#setup]
-* Lesson Structure [#lesson-structure]
+Using TinyGo to program the Arduino Nano 33 IoT, demonstrating hardware
+control and internet connectivity.
 
 ## Setup
 
