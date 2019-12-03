@@ -77,10 +77,11 @@ Should produce entries like (you may have different numbers after
 /dev/tty.usbmodem141201
 ```
 
-Set the fully qualified path for the `tty` entry into an environment variable. We'll use this below in the macOS version of the steps.
+The entry with `tty` is going into an environment variable. We'll use this below in the macOS version of the steps.
+Make sure that you use a full path. It will look something like the above. Then export it into your shell:
 
 ```sh
-export NANO33_DEV_PATH=/dev/{YOUR TTY USBMODEM ID}
+export NANO33_DEV_PATH=/dev/tty.YOUR_USBMODEM_ID
 ```
 
 #### lesson0
@@ -143,7 +144,7 @@ Buzzer to create rotation threshold
 #### lesson5
 Sending data to an MQTT broker
 * Connect to wifi
-* Send MQTT message at rotation threshold
+* Send MQTT message when pressing a button
 
 **Running it - Linux**
 ```tinygo flash -target arduino-nano33 ./lesson5/main.go```
