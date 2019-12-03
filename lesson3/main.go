@@ -1,6 +1,6 @@
 package main
 
-import(
+import (
 	"machine"
 	"time"
 )
@@ -17,7 +17,7 @@ func main() {
 	machine.UART1.Configure(machine.UARTConfig{TX: machine.PA22, RX: machine.PA23})
 	rotarySensor.Configure()
 
-	led := machine.PWM{machine.D12}
+	led := machine.PWM{machine.D11}
 	led.Configure()
 
 	for {

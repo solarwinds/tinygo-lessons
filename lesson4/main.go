@@ -1,6 +1,6 @@
 package main
 
-import(
+import (
 	"machine"
 	"time"
 	"tinygo.org/x/drivers/buzzer"
@@ -17,10 +17,10 @@ func main() {
 	machine.UART1.Configure(machine.UARTConfig{TX: machine.PA22, RX: machine.PA23})
 	rotarySensor.Configure()
 
-	led := machine.PWM{machine.D12}
+	led := machine.PWM{machine.D11}
 	led.Configure()
 
-	buzrPin := machine.D11
+	buzrPin := machine.D10
 	buzrPin.Configure(machine.PinConfig{Mode: machine.PinOutput})
 
 	buzz := buzzer.New(buzrPin)
@@ -30,7 +30,7 @@ func main() {
 
 		if sensorValue > 32000 {
 			buzz.On()
-		}else{
+		} else {
 			buzz.Off()
 		}
 
@@ -39,4 +39,3 @@ func main() {
 		time.Sleep(time.Millisecond * 10)
 	}
 }
-

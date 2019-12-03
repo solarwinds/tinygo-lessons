@@ -2,12 +2,10 @@ package main
 
 import (
 	"machine"
-	"math/rand"
 	"time"
 
 	"tinygo.org/x/drivers/espat"
 	"tinygo.org/x/drivers/espat/mqtt"
-	"tinygo.org/x/drivers/ssd1306"
 )
 
 var (
@@ -19,8 +17,6 @@ var (
 
 	adaptor *espat.Device
 	topic   = "tinygo"
-
-	display ssd1306.Device
 )
 
 // access point info. Change this to match your WiFi connection information.
@@ -35,47 +31,46 @@ func main() {
 	machine.InitADC()
 	machine.InitPWM()
 
-	button := machine.D11
+	button := machine.D12
 	button.Configure(machine.PinConfig{Mode: machine.PinInput})
 
-	blue := machine.LED
-	blue.Configure(machine.PinConfig{Mode: machine.PinOutput})
+	led := machine.D11
+	led.Configure(machine.PinConfig{Mode: machine.PinOutput})
 
-	// Init esp8266/esp32
 	adaptor = espat.New(uart)
 	adaptor.Configure()
 
 	// first check if connected
 	if connectToESP() {
-		blue.High()
+		led.High()
 		println("Connected to wifi adaptor.")
 		adaptor.Echo(false)
 
-		blue.Low()
+		led.Low()
 		connectToAP()
-		blue.High()
+		led.High()
 	} else {
 		println("")
-		failMessage("Unable to connect to wifi adaptor.")
+		println("Unable to connect to wifi adaptor.")
 		return
 	}
 
 	opts := mqtt.NewClientOptions(adaptor)
 	opts.AddBroker(server).SetClientID("tinygo-client-" + "unit1")
 
-	blue.Low()
+	led.Low()
 	println("Connectng to MQTT...")
 	cl := mqtt.NewClient(opts)
 	if token := cl.Connect(); token.Wait() && token.Error() != nil {
-		failMessage(token.Error().Error())
+		println(token.Error().Error())
 	}
 
 	for {
 		buttonPush = button.Get()
 		if !buttonPush {
-			blue.Low()
+			led.Low()
 		} else {
-			blue.High()
+			led.High()
 			println("Publishing MQTT message...")
 			data := []byte("{\"e\":[{ \"n\":\"hello\", \"sv\":\"from unit1\" }]}")
 			token := cl.Publish(topic, 0, false, data)
@@ -88,8 +83,7 @@ func main() {
 		time.Sleep(time.Millisecond * 100)
 	}
 
-	// Right now this code is only reached when there is an error. Need a way to trigger clean exit.
-	println("Disconnecting MQTT...")
+	println("Error: disconnecting MQTT...")
 	cl.Disconnect(100)
 
 	println("Done.")
@@ -117,9 +111,3 @@ func connectToAP() {
 	println("Connected.")
 	println(adaptor.GetClientIP())
 }
-
-// Returns an int >= min, < max
-func randomInt(min, max int) int {
-	return min + rand.Intn(max-min)
-}
-
