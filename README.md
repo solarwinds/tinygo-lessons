@@ -28,11 +28,13 @@ dependencies installed on your system.
 https://tinygo.org/getting-started/linux/
 
 #### macOS
-`brew tap tinygo-org/tools`
-`brew install tinygo`
+```
+brew tap tinygo-org/tools
+brew install tinygo
 
-`brew tap osx-cross/avrZ`
-`brew install avr-gcc avrdude`
+brew tap osx-cross/avrZ
+brew install avr-gcc avrdude
+```
 
 #### Windows (Experimental)
 https://tinygo.org/getting-started/windows/
