@@ -108,6 +108,9 @@ Goroutines and UART print
 **Running it - macOS**
 ```tinygo flash -target arduino-nano33 -port=$NANO33_DEV_PATH ./lesson1/main.go```
 
+**Screen command to read println statements**
+````screen $NANO33_DEV_PATH 9600``
+
 #### lesson2
 Connecting an external LED to a pin
 * Breadboards and their rails
@@ -163,6 +166,18 @@ Sending data to an MQTT broker
 
 * [UART](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter)
 * [screen](https://www.gnu.org/software/screen/)
+
+
+## Bill of Materials
+
+* Arduino Nano33 IoT with headers
+* Tiny breadboard 
+* Small breadboard
+* Jumpwires
+* Seeed Studios Grove LED (modified with male terminators for breadboard)
+* Seeed Studios Grove button (modified with male terminators for breadboard)
+* Seeed Studios Grove buzzer (modified with male terminators for breadboard)
+* Seeed Studios Grove rotation sensor (modified with male terminators for breadboard)
 
 
 ## Credits
