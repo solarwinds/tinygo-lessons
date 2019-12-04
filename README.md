@@ -25,12 +25,19 @@ brew install go
 Install from MSI or source https://golang.org/dl/
 
 ### TinyGo
-Use the links below to understand how to get TinyGo installed on your system.
+Use the links below to understand how to get TinyGo and the AVR microcontroller 
+dependencies installed on your system.
+
 #### Linux
 https://tinygo.org/getting-started/linux/
 
 #### macOS
-https://tinygo.org/getting-started/macos/
+`brew tap tinygo-org/tools`
+`brew install tinygo`
+
+`brew tap osx-cross/avrZ`
+`brew install avr-gcc avrdude`
+
 
 #### Windows (Experimental)
 https://tinygo.org/getting-started/windows/
