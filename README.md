@@ -19,7 +19,7 @@ brew install go
 ```
 
 ### This Repo
-`go get github.com/tinygo-org/tinygo`
+`git clone https://github.com/solarwinds/tinygo-lessons`
 
 #### Windows (Experimental)
 Install from MSI or source https://golang.org/dl/
