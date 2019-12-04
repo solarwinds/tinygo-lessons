@@ -17,11 +17,7 @@ sudo apt-get install golang-1.13-go
 brew update
 brew install go
 ```
-
-### This Repo
-`git clone https://github.com/solarwinds/tinygo-lessons`
-
-#### Windows (Experimental)
+#### Windows
 Install from MSI or source https://golang.org/dl/
 
 ### TinyGo
@@ -37,7 +33,6 @@ https://tinygo.org/getting-started/linux/
 
 `brew tap osx-cross/avrZ`
 `brew install avr-gcc avrdude`
-
 
 #### Windows (Experimental)
 https://tinygo.org/getting-started/windows/
