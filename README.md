@@ -32,7 +32,7 @@ https://tinygo.org/getting-started/linux/
 brew tap tinygo-org/tools
 brew install tinygo
 
-brew tap osx-cross/avrZ
+brew tap osx-cross/avr
 brew install avr-gcc avrdude
 ```
 
