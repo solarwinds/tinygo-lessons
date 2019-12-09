@@ -20,11 +20,11 @@ var (
 )
 
 // access point info. Change this to match your WiFi connection information.
-const ssid = "arduino"
-const pass = "ts2019"
+const ssid = "Arduino"
+const pass = "tinygo123"
 
 // IP address of the MQTT broker to use. Replace with your own info, if so desired.
-const server = "tcp://192.168.1.8:1883"
+const server = "tcp://172.20.36.137:1883"
 
 func main() {
 	uart.Configure(machine.UARTConfig{TX: tx, RX: rx})
@@ -109,5 +109,8 @@ func connectToAP() {
 	adaptor.ConnectToAP(ssid, pass, 10)
 
 	println("Connected.")
+	println("Waiting 10s before asking for client IP.")
+
+	time.Sleep(10 * time.Second)
 	println(adaptor.GetClientIP())
 }
