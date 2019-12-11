@@ -109,8 +109,8 @@ func connectToAP() {
 	adaptor.ConnectToAP(ssid, pass, 10)
 
 	println("Connected.")
-	println("Waiting 10s before asking for client IP.")
+	println("Waiting 5s before asking for client IP.")
 
-	time.Sleep(10 * time.Second)
+	time.Sleep(5 * time.Second)
 	println(adaptor.GetClientIP())
 }

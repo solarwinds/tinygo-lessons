@@ -119,6 +119,19 @@ Goroutines and UART print
 Connecting an external LED to a pin
 * Breadboards and their rails
 * Using jumper wires and pins
+* Blinking the LED with a button
+
+**Steps:**
+
+* Run a red jumper wire from the 3.3v power pin on the board to the **+**  rail on the breadboard.
+* Run a black jumper wire from the GND pin on the board to the **-** rail on the breadboard.
+* NOTE: you only need to do the above once to power the entire breadboard.
+* Plug a jumper wire into pin D11 on the board and run it to a rail in the middle of the breadboard (5 is a good one to start)
+* Plug your LED component's red and black lines into power and ground slots on the breadboard.
+* Plug your LED's **yellow** wire in-line with the jumper you ran to D11
+* Replicate the above with the button component, adding power and ground and then running your control jumper to D12 on the 10 line of the breadboard and plugging your yellow wire in-line.
+* Flash the board and use the button to control the LED
+
 
 **Running it - Linux**
 ```tinygo flash -target arduino-nano33 ./lesson2/main.go```
@@ -127,9 +140,15 @@ Connecting an external LED to a pin
 ```tinygo flash -target arduino-nano33 -port=$NANO33_DEV_PATH ./lesson2/main.go```
 
 #### lesson3
-Analog rotation sensor to control an LED
+Analog rotation sensor to control an LED, understanding PWM and ADC
 * Use rotation sensor as a dimmer switch
 * Send rotation info to UART for debugging
+
+**Steps**
+
+* Run a jumper wire from pin A0 on the board to row 15 on your breadboard and then wire up your rotary sensor 
+* Flash the board and then use the rotary sensor to brighten/dim the LED
+* Connect to the UART interface with `screen $NANO33_DEV_PATH 9600` and watch the values change as you rotate the sensor
 
 **Running it - Linux**
 ```tinygo flash -target arduino-nano33 ./lesson3/main.go```
@@ -142,6 +161,12 @@ Buzzer to create rotation threshold
 * Transforming analog values
 * Understanding ADC range
 
+**Steps**
+
+* Run a jumper wire from pin D11 on the board to row 20 on your breadboard and then wire up your buzzer
+* Flash the board. When you turn the rotary sensor enough, the buzzer will sound. If the buzzer is sounding when your board is flashed, turn the rotary sensor until it stops making noise.
+
+
 **Running it - Linux**
 ```tinygo flash -target arduino-nano33 ./lesson4/main.go```
 
@@ -152,6 +177,13 @@ Buzzer to create rotation threshold
 Sending data to an MQTT broker
 * Connect to wifi
 * Send MQTT message when pressing a button
+
+** Steps **
+* Open `lesson6/main.go` in an editor and change all instances of the string "unit1" to your first name. Save the file.
+* Flash the board, wait a couple seconds, and then connect to the UART interface: (`screen $NANO33_DEV_PATH 9600`). You should see the device get provisioned with an IP and also see the gateway address and netmask.
+* Press the button to send an MQTT message to the broker on the local network.
+
+
 
 **Running it - Linux**
 ```tinygo flash -target arduino-nano33 ./lesson5/main.go```
