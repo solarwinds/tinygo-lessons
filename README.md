@@ -154,7 +154,7 @@ Analog rotation sensor to control an LED, understanding PWM and ADC
 * Send rotation info to UART for debugging
 
 
-![rotary setup](/solarwinds/tinygo-lessons/img/03-add-rotary.jpg)
+![rotary setup](img/03-add-rotary.jpg)
 
 **Steps**
 
@@ -175,7 +175,7 @@ Buzzer to create rotation threshold
 * Transforming analog values
 * Understanding ADC range
 
-![add buzzer](/solarwinds/tinygo-lessons/img/04-add-buzzer.jpg)
+![add buzzer](img/04-add-buzzer.jpg)
 
 **Steps**
 
