@@ -125,7 +125,7 @@ Connecting an external LED to a pin
 * Using jumper wires and pins
 * Blinking the LED with a button
 
-![LED and button setup](https://github.com/solarwinds/tinygo-lessons/img/02-led-and-button.jpg)
+![LED and button setup](/solarwinds/tinygo-lessons/img/02-led-and-button.jpg)
 
 **Steps:**
 
@@ -154,7 +154,7 @@ Analog rotation sensor to control an LED, understanding PWM and ADC
 * Send rotation info to UART for debugging
 
 
-![rotary setup](https://github.com/solarwinds/tinygo-lessons/img/03-add-rotary.jpg)
+![rotary setup](/solarwinds/tinygo-lessons/img/03-add-rotary.jpg)
 
 **Steps**
 
@@ -175,7 +175,7 @@ Buzzer to create rotation threshold
 * Transforming analog values
 * Understanding ADC range
 
-![add buzzer](https://github.com/solarwinds/tinygo-lessons/img/04-add-buzzer.jpg)
+![add buzzer](/solarwinds/tinygo-lessons/img/04-add-buzzer.jpg)
 
 **Steps**
 
