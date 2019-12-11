@@ -27,6 +27,12 @@ dependencies installed on your system.
 #### Linux
 https://tinygo.org/getting-started/linux/
 
+From that page follow instructions to:
+
+* Install TinyGo itself
+* Install Clang 9
+* Install AVR tools for Arduino
+
 #### macOS
 ```
 brew tap tinygo-org/tools
