@@ -115,7 +115,7 @@ Goroutines and UART print
 ```tinygo flash -target arduino-nano33 -port=$NANO33_DEV_PATH ./lesson1/main.go```
 
 **Screen command to read println statements**
-````screen $NANO33_DEV_PATH 9600``
+```screen $NANO33_DEV_PATH 9600```
 
 ---
 
@@ -125,7 +125,7 @@ Connecting an external LED to a pin
 * Using jumper wires and pins
 * Blinking the LED with a button
 
-![LED and button setup](/solarwinds/tinygo-lessons/img/02-led-and-button.jpg)
+![LED and button setup](img/02-led-and-button.jpg)
 
 **Steps:**
 
