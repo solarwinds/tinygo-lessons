@@ -100,6 +100,8 @@ export NANO33_DEV_PATH=/dev/tty.YOUR_USBMODEM_ID
 **Running it - macOS**
 ```tinygo flash -target arduino-nano33 -port=$NANO33_DEV_PATH ./lesson0/main.go```
 
+---
+
 #### lesson1
 Goroutines and UART print
 * goroutines let you do more than one thing at once
@@ -115,17 +117,22 @@ Goroutines and UART print
 **Screen command to read println statements**
 ````screen $NANO33_DEV_PATH 9600``
 
+---
+
 #### lesson2
 Connecting an external LED to a pin
 * Breadboards and their rails
 * Using jumper wires and pins
 * Blinking the LED with a button
 
+![LED and button setup](https://github.com/solarwinds/tinygo-lessons/img/02-led-and-button.jpg)
+
 **Steps:**
 
 * Run a red jumper wire from the 3.3v power pin on the board to the **+**  rail on the breadboard.
 * Run a black jumper wire from the GND pin on the board to the **-** rail on the breadboard.
 * NOTE: you only need to do the above once to power the entire breadboard.
+* Plug the LED bulb (gently!) into the socket. If it doesn't light up in later steps, pull it out and turn it around.
 * Plug a jumper wire into pin D11 on the board and run it to a rail in the middle of the breadboard (5 is a good one to start)
 * Plug your LED component's red and black lines into power and ground slots on the breadboard.
 * Plug your LED's **yellow** wire in-line with the jumper you ran to D11
@@ -139,10 +146,15 @@ Connecting an external LED to a pin
 **Running it - macOS**
 ```tinygo flash -target arduino-nano33 -port=$NANO33_DEV_PATH ./lesson2/main.go```
 
+---
+
 #### lesson3
 Analog rotation sensor to control an LED, understanding PWM and ADC
 * Use rotation sensor as a dimmer switch
 * Send rotation info to UART for debugging
+
+
+![rotary setup](https://github.com/solarwinds/tinygo-lessons/img/03-add-rotary.jpg)
 
 **Steps**
 
@@ -156,10 +168,14 @@ Analog rotation sensor to control an LED, understanding PWM and ADC
 **Running it - macOS**
 ```tinygo flash -target arduino-nano33 -port=$NANO33_DEV_PATH ./lesson3/main.go```
 
+---
+
 #### lesson4
 Buzzer to create rotation threshold
 * Transforming analog values
 * Understanding ADC range
+
+![add buzzer](https://github.com/solarwinds/tinygo-lessons/img/04-add-buzzer.jpg)
 
 **Steps**
 
@@ -172,6 +188,8 @@ Buzzer to create rotation threshold
 
 **Running it - macOS**
 ```tinygo flash -target arduino-nano33 -port=$NANO33_DEV_PATH ./lesson4/main.go```
+
+---
 
 #### lesson5
 Sending data to an MQTT broker
