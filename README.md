@@ -196,7 +196,8 @@ Sending data to an MQTT broker
 * Connect to wifi
 * Send MQTT message when pressing a button
 
-** Steps **
+**Steps**
+
 * Open `lesson6/main.go` in an editor and change all instances of the string "unit1" to your first name. Save the file.
 * Flash the board, wait a couple seconds, and then connect to the UART interface: (`screen $NANO33_DEV_PATH 9600`). You should see the device get provisioned with an IP and also see the gateway address and netmask.
 * Press the button to send an MQTT message to the broker on the local network.
